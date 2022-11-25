@@ -5,6 +5,7 @@
   border: 1px solid #fff;
   background-color: #000;
   background: url(../../../images/add.svg) no-repeat center;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 880px){
