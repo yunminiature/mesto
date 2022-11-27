@@ -6,6 +6,11 @@
   background-color: #000;
   background: url(../../../images/edit.svg) no-repeat center;
   cursor: pointer;
+  transition: opacity 0.5s;
+}
+.profile__edit:hover{
+  opacity: 0.6;
+  transition: opacity 0.5s;
 }
 
 @media screen and (max-width: 880px){
