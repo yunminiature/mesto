@@ -7,4 +7,11 @@
   text-rendering: optimizeLegibility;
   background-color: #000;
   color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.root main{
+  flex: 1;
 }

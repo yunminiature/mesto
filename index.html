@@ -9,83 +9,83 @@
     <link rel="stylesheet" href="pages/index.css">
     <title>Mesto</title>
   </head>
-  <body>
-    <div class="root">
+  <body class="root">
       <header class="header">
         <img src="images/logo.svg" alt="лого" class="header__logo">
       </header>
       <main>
-        <div class="profile">
-          <img src="images/profile.jpg" alt="" class="profile__avatar">
+        <section class="profile" aria-label="Информация профиля">
+          <img src="images/profile.jpg" alt="Фото профиля" class="profile__avatar">
           <div class="profile__info">
             <div class="profile__text">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <h2 class="profile__description">Исследователь океана</h2>
+              <p class="profile__description">Исследователь океана</p>
             </div>
-            <button type="button" name="button" class="profile__edit"></button>
+            <button type="button" name="editButton" class="profile__edit" aria-label="Редактировать"></button>
           </div>
-          <button type="button" name="button" class="profile__add"></button>
-        </div>
-        <ul class="elements">
-          <li class="elements__item">
-            <img src="images/pic3.jpg" alt="Карачаевск" class="elements__item-poster">
-            <div class="elements__item-description">
-              <h3 class="elements__item-title">Карачаевск</h3>
-              <button type="button" name="button" class="elements__item-like"></button>
-            </div>
-          </li>
-          <li class="elements__item">
-            <img src="images/pic2.jpg" alt="Гора Эльбрус" class="elements__item-poster">
-            <div class="elements__item-description">
-              <h3 class="elements__item-title">Гора Эльбрус</h3>
-              <button type="button" name="button" class="elements__item-like"></button>
-            </div>
-          </li>
-          <li class="elements__item">
-            <img src="images/pic1.jpg" alt="Домбай" class="elements__item-poster">
-            <div class="elements__item-description">
-              <h3 class="elements__item-title">Домбай</h3>
-              <button type="button" name="button" class="elements__item-like"></button>
-            </div>
-          </li>
-          <li class="elements__item">
-            <img src="images/pic2.jpg" alt="Гора Эльбрус" class="elements__item-poster">
-            <div class="elements__item-description">
-              <h3 class="elements__item-title">Гора Эльбрус</h3>
-              <button type="button" name="button" class="elements__item-like"></button>
-            </div>
-          </li>
-          <li class="elements__item">
-            <img src="images/pic1.jpg" alt="Домбай" class="elements__item-poster">
-            <div class="elements__item-description">
-              <h3 class="elements__item-title">Домбай</h3>
-              <button type="button" name="button" class="elements__item-like"></button>
-            </div>
-          </li>
-          <li class="elements__item">
-            <img src="images/pic3.jpg" alt="Карачаево-Черкесия" class="elements__item-poster">
-            <div class="elements__item-description">
-              <h3 class="elements__item-title">Карачаево-Черкесия</h3>
-              <button type="button" name="button" class="elements__item-like"></button>
-            </div>
-          </li>
-        </ul>
+          <button type="button" name="addButton" class="profile__add" aria-label="Добавить"></button>
+        </section>
+        <section class="elements" aria-label="Фото">
+          <ul>
+            <li class="elements__item">
+              <img src="images/pic3.jpg" alt="Карачаевск" class="elements__item-poster">
+              <div class="elements__item-description">
+                <h2 class="elements__item-title">Карачаевск</h2>
+                <button type="button" name="button" class="elements__item-like"></button>
+              </div>
+            </li>
+            <li class="elements__item">
+              <img src="images/pic2.jpg" alt="Гора Эльбрус" class="elements__item-poster">
+              <div class="elements__item-description">
+                <h2 class="elements__item-title">Гора Эльбрус</h2>
+                <button type="button" name="button" class="elements__item-like"></button>
+              </div>
+            </li>
+            <li class="elements__item">
+              <img src="images/pic1.jpg" alt="Домбай" class="elements__item-poster">
+              <div class="elements__item-description">
+                <h2 class="elements__item-title">Домбай</h2>
+                <button type="button" name="button" class="elements__item-like"></button>
+              </div>
+            </li>
+            <li class="elements__item">
+              <img src="images/pic2.jpg" alt="Гора Эльбрус" class="elements__item-poster">
+              <div class="elements__item-description">
+                <h2 class="elements__item-title">Гора Эльбрус</h2>
+                <button type="button" name="button" class="elements__item-like"></button>
+              </div>
+            </li>
+            <li class="elements__item">
+              <img src="images/pic1.jpg" alt="Домбай" class="elements__item-poster">
+              <div class="elements__item-description">
+                <h2 class="elements__item-title">Домбай</h2>
+                <button type="button" name="button" class="elements__item-like"></button>
+              </div>
+            </li>
+            <li class="elements__item">
+              <img src="images/pic3.jpg" alt="Карачаево-Черкесия" class="elements__item-poster">
+              <div class="elements__item-description">
+                <h2 class="elements__item-title">Карачаево-Черкесия</h2>
+                <button type="button" name="button" class="elements__item-like"></button>
+              </div>
+            </li>
+          </ul>
+        </section>
       </main>
       <footer class="footer">
         <p class="footer__text">© 2020 Mesto Russia</p>
       </footer>
       <div class="popup">
-        <button type="button" name="button" class="popup__close"></button>
         <div class="popup__container">
-          <form class="popup__form">
+          <button type="button" name="button" class="popup__close"></button>
+          <form class="popup__form" name="popupForm">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <input type="text" class="popup__form-input popup__form-input_type_name" value="" required>
-            <input type="text" class="popup__form-input popup__form-input_type_description" value="" required>
-            <input type="submit" class="popup__submit" value="Сохранить">
+            <input type="text" class="popup__form-input popup__form-input_type_name" value="" name="inputName" required>
+            <input type="text" class="popup__form-input popup__form-input_type_description" value="" name="inputDescription" required>
+            <button type="submit" class="popup__submit">Сохранить</button>
           </form>
         </div>
       </div>
-    </div>
     <script src="scripts/script.js"></script>
   </body>
 </html>

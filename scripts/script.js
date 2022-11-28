@@ -5,14 +5,14 @@ let popup = document.querySelector('.popup');
 let likes = document.querySelectorAll('.elements__item-like');
 
 let form = document.querySelector('.popup__form');
-let name = document.querySelector('.profile__name');
-let description = document.querySelector('.profile__description');
+let profileName = document.querySelector('.profile__name');
+let profileDescription = document.querySelector('.profile__description');
 let formName = document.querySelector('.popup__form-input_type_name');
 let formDescription = document.querySelector('.popup__form-input_type_description');
 
 function openPopup(){
-  formName.value = name.textContent;
-  formDescription.value = description.textContent;
+  formName.value = profileName.textContent;
+  formDescription.value = profileDescription.textContent;
   popup.classList.add('popup_opened');
 };
 function closePopup(){
@@ -20,15 +20,15 @@ function closePopup(){
 };
 
 function likeElement(){
-  this.classList.contains("elements__item-like_active")
+  this.classList.contains('elements__item-like_active')
   ? this.classList.remove('elements__item-like_active')
   : this.classList.add('elements__item-like_active');
 }
 
 function handleFormSubmit (evt){
   evt.preventDefault();
-  name.textContent = formName.value;
-  description.textContent = formDescription.value;
+  profileName.textContent = formName.value;
+  profileDescription.textContent = formDescription.value;
   closePopup();
 }
 
