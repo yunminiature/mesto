@@ -1,6 +1,6 @@
 .popup__close{
   position: absolute;
-  left: calc(50% + 220px);
+  right: -40px;
   top: -40px;
   min-width: 32px;
   min-height: 32px;
@@ -17,16 +17,10 @@
   transition: opacity 0.5s;
 }
 
-@media screen and (max-width: 880px){
+@media screen and (max-width: 500px){
   .popup__close{
-    top: -36px;
-    left: calc(50% + 195px);
+    right: 0;
     min-width: 20px;
     min-height: 20px;
-  }
-}
-@media screen and (max-width: 488px){
-  .popup__close{
-    left: calc(88%);
   }
 }

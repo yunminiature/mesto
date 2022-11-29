@@ -6,6 +6,7 @@
   outline: 0;
   background-color: #000;
   background: url(../../../images/add.svg) no-repeat center;
+  background-size: 22px 22px;
   cursor: pointer;
   transition: opacity 0.5s;
 }
@@ -18,5 +19,6 @@
   .profile__add{
     margin: 32px 0 0;
     width: 100%;
+    background-size: 16px 16px;
   }
 }
