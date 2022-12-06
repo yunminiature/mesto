@@ -1,6 +1,8 @@
 .elements__item{
+  position: relative;
   max-width: 282px;
   max-height: 362px;
   border-radius: 10px;
   overflow: hidden;
+  cursor: pointer;
 }

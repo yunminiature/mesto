@@ -27,55 +27,13 @@
         </section>
         <section class="elements" aria-label="Фото">
           <ul class="elements__list">
-            <li class="elements__item">
-              <img src="images/pic3.jpg" alt="Карачаевск" class="elements__item-poster">
-              <div class="elements__item-description">
-                <h2 class="elements__item-title">Карачаевск</h2>
-                <button type="button" name="button" class="elements__item-like"></button>
-              </div>
-            </li>
-            <li class="elements__item">
-              <img src="images/pic2.jpg" alt="Гора Эльбрус" class="elements__item-poster">
-              <div class="elements__item-description">
-                <h2 class="elements__item-title">Гора Эльбрус</h2>
-                <button type="button" name="button" class="elements__item-like"></button>
-              </div>
-            </li>
-            <li class="elements__item">
-              <img src="images/pic1.jpg" alt="Домбай" class="elements__item-poster">
-              <div class="elements__item-description">
-                <h2 class="elements__item-title">Домбай</h2>
-                <button type="button" name="button" class="elements__item-like"></button>
-              </div>
-            </li>
-            <li class="elements__item">
-              <img src="images/pic2.jpg" alt="Гора Эльбрус" class="elements__item-poster">
-              <div class="elements__item-description">
-                <h2 class="elements__item-title">Гора Эльбрус</h2>
-                <button type="button" name="button" class="elements__item-like"></button>
-              </div>
-            </li>
-            <li class="elements__item">
-              <img src="images/pic1.jpg" alt="Домбай" class="elements__item-poster">
-              <div class="elements__item-description">
-                <h2 class="elements__item-title">Домбай</h2>
-                <button type="button" name="button" class="elements__item-like"></button>
-              </div>
-            </li>
-            <li class="elements__item">
-              <img src="images/pic3.jpg" alt="Карачаево-Черкесия" class="elements__item-poster">
-              <div class="elements__item-description">
-                <h2 class="elements__item-title">Карачаево-Черкесия</h2>
-                <button type="button" name="button" class="elements__item-like"></button>
-              </div>
-            </li>
           </ul>
         </section>
       </main>
       <footer class="footer">
         <p class="footer__text">© 2020 Mesto Russia</p>
       </footer>
-      <div class="popup">
+      <div class="popup popup-profile">
         <div class="popup__container">
           <button type="button" name="button" class="popup__close"></button>
           <form class="popup__form" name="popupForm">
@@ -86,6 +44,34 @@
           </form>
         </div>
       </div>
+      <div class="popup popup-card">
+        <div class="popup__container">
+          <button type="button" name="button" class="popup__close"></button>
+          <form class="popup__form" name="popupForm">
+            <h2 class="popup__title">Новое место</h2>
+            <input type="text" class="popup__form-input popup__form-input_type_title" value="" name="inputTitle" placeholder="Название" required>
+            <input type="text" class="popup__form-input popup__form-input_type_link" value="" name="inputLink" placeholder="Ссылка на картинку" required>
+            <button type="submit" class="popup__submit">Сохранить</button>
+          </form>
+        </div>
+      </div>
+    <template id="card-template">
+      <li class="elements__item">
+        <button type="button" name="button" class="elements__item-delete"></button>
+        <img class="elements__item-poster">
+        <div class="elements__item-description">
+          <h2 class="elements__item-title"></h2>
+          <button type="button" name="button" class="elements__item-like"></button>
+        </div>
+        <div class="elements__item__popup">
+          <div class="elements__item__popup__container">
+            <button type="button" name="button" class="elements__item__popup__close"></button>
+            <img class="elements__item__popup__image">
+            <p class="elements__item__popup__description"></p>
+          </div>
+        </div>
+      </li>
+    </template>
     <script src="scripts/script.js"></script>
   </body>
 </html>
