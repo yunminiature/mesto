@@ -1,4 +1,4 @@
-.elements__item__popup__close{
+.poster-popup__close{
   position: absolute;
   right: -40px;
   top: -40px;
@@ -7,7 +7,7 @@
   border: 0;
   outline: 0;
   background-color: transparent;
-  background: url(../../../../../images/close.svg) no-repeat center;
+  background: url(../../../images/close.svg) no-repeat center;
   background-size: cover;
   cursor: pointer;
   transition: opacity 0.5s;
