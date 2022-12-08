@@ -1,7 +1,7 @@
 const cardContainer = document.querySelector('.elements__list');
+const cardTemplate = document.querySelector('#card-template').content;
 
 const createCard = (name, link) => {
-  const cardTemplate = document.querySelector('#card-template').content;
   const card = cardTemplate.querySelector('.elements__item').cloneNode(true);
   const poster = card.querySelector('.elements__item-poster');
   poster.setAttribute('src', link);
@@ -9,7 +9,7 @@ const createCard = (name, link) => {
   card.querySelector('.elements__item-title').textContent = name;
   card.querySelector('.elements__item-like').addEventListener('click', () => card.querySelector('.elements__item-like').classList.toggle('elements__item-like_active'));
   card.querySelector('.elements__item-delete').addEventListener('click', () => card.remove());
-  poster.addEventListener('click', (event) => addPosterPopup(event.target));
+  poster.addEventListener('click', (event) => openPosterPopup(name, link));
   return card;
 }
 
@@ -65,8 +65,8 @@ const addCardTitle = cardPopup.querySelector('.popup__form-input_type_title');
 const addCardLink = cardPopup.querySelector('.popup__form-input_type_link');
 
 function openCardPopup(){
-  addCardTitle.value = '';
-  addCardLink.value = '';
+  addCardTitle.reset();
+  addCardLink.reset();
   openPopup(cardPopup);
 };
 addCardButton.addEventListener('click', openCardPopup);
@@ -83,17 +83,14 @@ function handleCardFormSubmit (evt){
 }
 addCardForm.addEventListener('submit', handleCardFormSubmit);
 
-const createPosterPopup = (name, link) => {
-  const posterPopupTemplate = document.querySelector('#poster-popup-template').content;
-  const posterPopup = posterPopupTemplate.querySelector('.poster-popup').cloneNode(true);
+const posterPopup = document.querySelector('.poster-popup');
+
+function openPosterPopup(name, link){
+  console.log('открываем постер попап '+name+' '+link);
   const poster = posterPopup.querySelector('.poster-popup__image');
   poster.setAttribute('src', link);
   poster.setAttribute('alt', name);
   posterPopup.querySelector('.poster-popup__description').textContent = name;
-  posterPopup.querySelector('.poster-popup__close').addEventListener('click', () => posterPopup.remove());
-  return posterPopup;
-}
-
-const addPosterPopup = (poster) => {
-  document.querySelector('.root__container').append(createPosterPopup(poster.getAttribute('alt'), poster.getAttribute('src')));
+  posterPopup.querySelector('.poster-popup__close').addEventListener('click', () => posterPopup.classList.remove('poster-popup_opened'));
+  posterPopup.classList.add('poster-popup_opened');
 }
