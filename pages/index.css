@@ -39,7 +39,6 @@
 @import url(../blocks/popup/__title/popup__title.css);
 
 @import url(../blocks/poster-popup/poster-popup.css);
-@import url(../blocks/poster-popup/_opened/poster-popup_opened.css);
 @import url(../blocks/poster-popup/__close/poster-popup__close.css);
 @import url(../blocks/poster-popup/__container/poster-popup__container.css);
 @import url(../blocks/poster-popup/__description/poster-popup__description.css);

@@ -84,13 +84,13 @@ function handleCardFormSubmit (evt){
 addCardForm.addEventListener('submit', handleCardFormSubmit);
 
 const posterPopup = document.querySelector('.poster-popup');
-
+const poster = posterPopup.querySelector('.poster-popup__image');
+const posterDescription = posterPopup.querySelector('.poster-popup__description');
+const closePosterPopup = posterPopup.querySelector('.poster-popup__close');
+closePosterPopup.addEventListener('click', () => closePopup(posterPopup));
 function openPosterPopup(name, link){
-  console.log('открываем постер попап '+name+' '+link);
-  const poster = posterPopup.querySelector('.poster-popup__image');
   poster.setAttribute('src', link);
   poster.setAttribute('alt', name);
-  posterPopup.querySelector('.poster-popup__description').textContent = name;
-  posterPopup.querySelector('.poster-popup__close').addEventListener('click', () => posterPopup.classList.remove('poster-popup_opened'));
-  posterPopup.classList.add('poster-popup_opened');
+  posterDescription.textContent = name;
+  openPopup(posterPopup);
 }
