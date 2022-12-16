@@ -42,27 +42,18 @@ initialCards.forEach((item) => {
 
 function closeByEsc(evt) {
   if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
+    closePopup(document.querySelector('.popup_opened'));
   }
 };
 
 function openPopup(node){
-  enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__form-input',
-    submitButtonSelector: '.popup__submit'
-  });
+  node.querySelector('.popup__submit').setAttribute('disabled', 'disabled');
   node.classList.add('popup_opened');
-  document.addEventListener('keydown', evt => {
-    closeByEsc(evt);
-  })
+  document.addEventListener('keydown', closeByEsc)
 }
 function closePopup(node){
   node.classList.remove('popup_opened');
-  document.removeEventListener('keydown', evt => {
-    closeByEsc(evt);
-  })
+  document.removeEventListener('keydown', closeByEsc)
 }
 
 function openProfilePopup(){
@@ -118,7 +109,17 @@ buttonCloseCardPopup.addEventListener('click', closeCardPopup);
 
 posterPopupClose.addEventListener('click', () => closePopup(posterPopup));
 
-document.addEventListener('click', evt =>{
+profilePopup.addEventListener('click', evt =>{
+  if(evt.target.classList.contains('popup')){
+    closePopup(document.querySelector('.popup_opened'));
+  };
+});
+cardPopup.addEventListener('click', evt =>{
+  if(evt.target.classList.contains('popup')){
+    closePopup(document.querySelector('.popup_opened'));
+  };
+});
+posterPopup.addEventListener('click', evt =>{
   if(evt.target.classList.contains('popup')){
     closePopup(document.querySelector('.popup_opened'));
   };
