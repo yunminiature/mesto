@@ -16,6 +16,7 @@ const buttonCloseCardPopup = cardPopup.querySelector('.popup__close');
 const formAddCard = cardPopup.querySelector('.popup__form');
 const cardTitleAdd = cardPopup.querySelector('.popup__form-input_type_title');
 const cardLinkAdd = cardPopup.querySelector('.popup__form-input_type_link');
+const submitAddCard = cardPopup.querySelector('.popup__submit');
 
 const posterPopup = document.querySelector('.poster-popup');
 const poster = posterPopup.querySelector('.poster-popup__image');
@@ -47,7 +48,6 @@ function closeByEsc(evt) {
 };
 
 function openPopup(node){
-  node.querySelector('.popup__submit').setAttribute('disabled', 'disabled');
   node.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEsc)
 }
@@ -67,6 +67,7 @@ function closeProfilePopup(){
 
 function openCardPopup(){
   formAddCard.reset();
+  submitAddCard.setAttribute('disabled', 'disabled');
   openPopup(cardPopup);
 };
 function closeCardPopup(){
@@ -101,26 +102,13 @@ enableValidation({
 
 buttonEditProfile.addEventListener('click', openProfilePopup);
 formEditProfile.addEventListener('submit', handleProfileFormSubmit);
-buttonCloseProfilePopup.addEventListener('click', closeProfilePopup);
-
 buttonAddCard.addEventListener('click', openCardPopup);
 formAddCard.addEventListener('submit', handleCardFormSubmit);
-buttonCloseCardPopup.addEventListener('click', closeCardPopup);
-
-posterPopupClose.addEventListener('click', () => closePopup(posterPopup));
-
-profilePopup.addEventListener('click', evt =>{
-  if(evt.target.classList.contains('popup')){
-    closePopup(document.querySelector('.popup_opened'));
-  };
-});
-cardPopup.addEventListener('click', evt =>{
-  if(evt.target.classList.contains('popup')){
-    closePopup(document.querySelector('.popup_opened'));
-  };
-});
-posterPopup.addEventListener('click', evt =>{
-  if(evt.target.classList.contains('popup')){
-    closePopup(document.querySelector('.popup_opened'));
-  };
+/* это круто, спасибо за совет!!! */
+document.querySelectorAll('.popup').forEach( popup => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
+      closePopup(popup);
+    };
+  });
 });
