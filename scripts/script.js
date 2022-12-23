@@ -1,9 +1,16 @@
+import {
+  Card, 
+  popup as posterPopup, 
+  popupImage as posterPopupImage, 
+  popupDescription as posterPopupDescription, 
+  popupCloseButton as posterPopupCloseButton
+} from './Card.js';
+import FormValidator from './FormValidator.js';
 const cardContainer = document.querySelector('.elements__list');
 const cardTemplate = document.querySelector('#card-template').content;
 
 const buttonEditProfile = document.querySelector('.profile__edit');
 const profilePopup = document.querySelector('.popup-profile');
-const buttonCloseProfilePopup = profilePopup.querySelector('.popup__close');
 const formEditProfile = profilePopup.querySelector('.popup__form');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
@@ -12,31 +19,16 @@ const profileDescriptionEdit = profilePopup.querySelector('.popup__form-input_ty
 
 const buttonAddCard = document.querySelector('.profile__add');
 const cardPopup = document.querySelector('.popup-card');
-const buttonCloseCardPopup = cardPopup.querySelector('.popup__close');
 const formAddCard = cardPopup.querySelector('.popup__form');
 const cardTitleAdd = cardPopup.querySelector('.popup__form-input_type_title');
 const cardLinkAdd = cardPopup.querySelector('.popup__form-input_type_link');
 const submitAddCard = cardPopup.querySelector('.popup__submit');
 
-const posterPopup = document.querySelector('.poster-popup');
-const poster = posterPopup.querySelector('.poster-popup__image');
-const posterDescription = posterPopup.querySelector('.poster-popup__description');
-const posterPopupClose = posterPopup.querySelector('.poster-popup__close');
+function addCard(description, image){
+  const card = new Card(description, image, cardTemplate);
+  cardContainer.prepend(card.generateCard());
+}
 
-const createCard = (name, link) => {
-  const card = cardTemplate.querySelector('.elements__item').cloneNode(true);
-  const poster = card.querySelector('.elements__item-poster');
-  poster.setAttribute('src', link);
-  poster.setAttribute('alt', name);
-  card.querySelector('.elements__item-title').textContent = name;
-  card.querySelector('.elements__item-like').addEventListener('click', () => card.querySelector('.elements__item-like').classList.toggle('elements__item-like_active'));
-  card.querySelector('.elements__item-delete').addEventListener('click', () => card.remove());
-  poster.addEventListener('click', (event) => openPosterPopup(name, link));
-  return card;
-}
-const addCard = (name, link) => {
-  cardContainer.prepend(createCard(name, link));
-}
 initialCards.forEach((item) => {
   addCard(item.name, item.link);
 });
@@ -49,7 +41,7 @@ function closeByEsc(evt) {
 
 function openPopup(node){
   node.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEsc)
+  document.addEventListener('keydown', closeByEsc);
 }
 function closePopup(node){
   node.classList.remove('popup_opened');
@@ -74,13 +66,6 @@ function closeCardPopup(){
   closePopup(cardPopup);
 };
 
-function openPosterPopup(name, link){
-  poster.setAttribute('src', link);
-  poster.setAttribute('alt', name);
-  posterDescription.textContent = name;
-  openPopup(posterPopup);
-}
-
 function handleProfileFormSubmit(evt){
   evt.preventDefault();
   profileName.textContent = profileNameEdit.value;
@@ -94,17 +79,14 @@ function handleCardFormSubmit (evt){
   closeCardPopup();
 }
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__form-input',
-  submitButtonSelector: '.popup__submit'
-});
-
 buttonEditProfile.addEventListener('click', openProfilePopup);
 formEditProfile.addEventListener('submit', handleProfileFormSubmit);
 buttonAddCard.addEventListener('click', openCardPopup);
 formAddCard.addEventListener('submit', handleCardFormSubmit);
-/* это круто, спасибо за совет!!! */
+cardContainer.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('elements__item-poster')) openPopup(posterPopup);
+});
+
 document.querySelectorAll('.popup').forEach( popup => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
@@ -112,3 +94,10 @@ document.querySelectorAll('.popup').forEach( popup => {
     };
   });
 });
+
+const validator = new FormValidator({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__form-input',
+  submitButtonSelector: '.popup__submit'
+});
+validator.enableValidation();
