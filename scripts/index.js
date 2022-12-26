@@ -1,13 +1,13 @@
-import {
-  Card, 
-  popup as posterPopup, 
-  popupImage as posterPopupImage, 
-  popupDescription as posterPopupDescription, 
-  popupCloseButton as posterPopupCloseButton
-} from './Card.js';
+import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+
+const posterPopup = document.querySelector('.poster-popup');
+const posterPopupImage = posterPopup.querySelector('.poster-popup__image');
+const posterPopupDescription = posterPopup.querySelector('.poster-popup__description');
 const cardContainer = document.querySelector('.elements__list');
-const cardTemplate = document.querySelector('#card-template').content;
+const cardTemplate = '#card-template';
+
+export {posterPopup, posterPopupImage, posterPopupDescription, openPopup}
 
 const buttonEditProfile = document.querySelector('.profile__edit');
 const profilePopup = document.querySelector('.popup-profile');
@@ -25,12 +25,12 @@ const cardLinkAdd = cardPopup.querySelector('.popup__form-input_type_link');
 const submitAddCard = cardPopup.querySelector('.popup__submit');
 
 function addCard(description, image){
-  const card = new Card(description, image, cardTemplate);
-  cardContainer.prepend(card.generateCard());
+  const card = new Card({description, image}, cardTemplate);
+  return card.generateCard();
 }
 
 initialCards.forEach((item) => {
-  addCard(item.name, item.link);
+  cardContainer.prepend(addCard(item.name, item.link));
 });
 
 function closeByEsc(evt) {
@@ -59,7 +59,6 @@ function closeProfilePopup(){
 
 function openCardPopup(){
   formAddCard.reset();
-  submitAddCard.setAttribute('disabled', 'disabled');
   openPopup(cardPopup);
 };
 function closeCardPopup(){
@@ -83,9 +82,6 @@ buttonEditProfile.addEventListener('click', openProfilePopup);
 formEditProfile.addEventListener('submit', handleProfileFormSubmit);
 buttonAddCard.addEventListener('click', openCardPopup);
 formAddCard.addEventListener('submit', handleCardFormSubmit);
-cardContainer.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('elements__item-poster')) openPopup(posterPopup);
-});
 
 document.querySelectorAll('.popup').forEach( popup => {
   popup.addEventListener('mousedown', (evt) => {
@@ -95,9 +91,11 @@ document.querySelectorAll('.popup').forEach( popup => {
   });
 });
 
-const validator = new FormValidator({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__form-input',
-  submitButtonSelector: '.popup__submit'
+function validate(formElement){
+  const validator = new FormValidator(formElement, '.popup__form-input', '.popup__submit');
+  validator.enableValidation();
+}
+
+document.querySelectorAll('.popup__form').forEach((formElement) => {
+  validate(formElement);
 });
-validator.enableValidation();
