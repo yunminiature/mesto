@@ -17,21 +17,21 @@ export default class Card{
     return cardElement;
   }
 
-  _handleOpenPopup(evt){
+  _handleOpenPopup(){
     posterPopupImage.src = this._image;
     posterPopupImage.alt = this._description;
     posterPopupDescription.textContent = this._description;
-    if (evt.target.classList.contains('elements__item-poster')) openPopup(posterPopup);
+    openPopup(posterPopup);
   }
   _handleLikeCard(){
     this._cardLike.classList.toggle('elements__item-like_active');
   }
   _handleDeleteCard(){
-    this._element.remove();
+    this._element = null;
   }
 
   _setEventListeners() {
-    this._cardImage.addEventListener('click', (evt) => {this._handleOpenPopup(evt)});
+    this._cardImage.addEventListener('click', () => {this._handleOpenPopup()});
     this._cardLike = this._element.querySelector('.elements__item-like');
     this._cardLike.addEventListener('click', () => {this._handleLikeCard()});
     this._element.querySelector('.elements__item-delete').addEventListener('click', this._handleDeleteCard);
