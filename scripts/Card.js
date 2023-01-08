@@ -27,14 +27,15 @@ export default class Card{
     this._cardLike.classList.toggle('elements__item-like_active');
   }
   _handleDeleteCard(){
-    this._element = null;
+    this._element.remove();
+    this._element = null;    
   }
 
   _setEventListeners() {
     this._cardImage.addEventListener('click', () => {this._handleOpenPopup()});
     this._cardLike = this._element.querySelector('.elements__item-like');
     this._cardLike.addEventListener('click', () => {this._handleLikeCard()});
-    this._element.querySelector('.elements__item-delete').addEventListener('click', this._handleDeleteCard);
+    this._element.querySelector('.elements__item-delete').addEventListener('click', () => {this._handleDeleteCard()});
   }
 
   generateCard() {

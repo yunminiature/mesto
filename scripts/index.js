@@ -32,9 +32,13 @@ function addValidator(form){
   return validator;
 }
 
-function addCard(description, image){
+function createCard(description, image){
   const card = new Card({description, image}, cardTemplate);
-  cardContainer.prepend(card.generateCard());
+  return card.generateCard();
+}
+
+function addCard(description, image){
+  cardContainer.prepend(createCard(description, image));
 }
 
 initialCards.forEach((item) => {
