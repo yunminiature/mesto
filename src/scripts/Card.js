@@ -1,10 +1,9 @@
-import {posterPopup, posterPopupImage, posterPopupDescription, openPopup} from './index.js'
-
 export default class Card{
-  constructor(cardData, template){
-    this._description = cardData.description;
-    this._image = cardData.image;
+  constructor({name, link}, template, handleCardClick){
+    this._description = name;
+    this._image = link;
     this._template = template;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate(){
@@ -17,12 +16,6 @@ export default class Card{
     return cardElement;
   }
 
-  _handleOpenPopup(){
-    posterPopupImage.src = this._image;
-    posterPopupImage.alt = this._description;
-    posterPopupDescription.textContent = this._description;
-    openPopup(posterPopup);
-  }
   _handleLikeCard(){
     this._cardLike.classList.toggle('elements__item-like_active');
   }
@@ -32,7 +25,7 @@ export default class Card{
   }
 
   _setEventListeners() {
-    this._cardImage.addEventListener('click', () => {this._handleOpenPopup()});
+    this._cardImage.addEventListener('click', this._handleCardClick);
     this._cardLike = this._element.querySelector('.elements__item-like');
     this._cardLike.addEventListener('click', () => {this._handleLikeCard()});
     this._element.querySelector('.elements__item-delete').addEventListener('click', () => {this._handleDeleteCard()});
