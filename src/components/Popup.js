@@ -15,16 +15,14 @@ export default class Popup{
         this.close();
       };
     });
+    document.addEventListener('keydown', this._handleEscClose.bind(this));
   }
 
   open(){
-    document.addEventListener('keydown', (evt) => {this._handleEscClose(evt)});
-    this.setEventListeners();
     this._popup.classList.add('popup_opened');
   }
 
   close(){
-    document.removeEventListener('keydown', (evt) => {this._handleEscClose(evt)});
     this._popup.classList.remove('popup_opened');
   }
 }
