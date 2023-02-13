@@ -7,7 +7,8 @@ export default class PopupWithForm extends Popup{
   }
 
   _getInputValues(){
-    return Array.from(this._popup.querySelectorAll('.popup__form-input'))
+    this._inputList = Array.from(this._popup.querySelectorAll('.popup__form-input'));
+    return Object.assign({}, ...(this._inputList.map(input => ({ [input.id]: input.value }))));
   }
 
   setEventListeners(){
