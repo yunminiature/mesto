@@ -1,0 +1,13 @@
+.profile__avatar-photo{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  transition: opacity 0.5s;
+}
+
+.profile__avatar:hover .profile__avatar-photo{
+  opacity: 0.2;
+  transition: opacity 0.5s;
+}
