@@ -60,7 +60,7 @@ const profileEditPopup = new PopupWithForm('.popup-profile', (evt, formData) => 
 const avatarEditPopup = new PopupWithForm('.popup-avatar', (evt, formData) => {
   evt.preventDefault();
   document.querySelector('.popup-avatar').querySelector('.popup__submit').textContent = 'Сохранение...';
-  api.editUserPhoto(formData['link-input'])
+  api.editUserPhoto(formData['url-input'])
     .then(userData => {
       userInfo.setUserPhoto(userData.avatar);
       avatarEditPopup.close();
