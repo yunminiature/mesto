@@ -20,6 +20,9 @@ export default class FormValidator{
       this._hideInputError(inputElement);
     }
   };
+  _blockButton(){
+    this._buttonElement.setAttribute('disabled', 'disabled');
+  }
   _toggleButtonState(){
     if (this._hasInvalidInput()) {
       this._buttonElement.setAttribute('disabled', 'disabled');
@@ -50,6 +53,6 @@ export default class FormValidator{
     this._inputList.forEach((input) => {
       this._hideInputError(input)
     })
-    this._toggleButtonState()
+    this._blockButton()
   } 
 }

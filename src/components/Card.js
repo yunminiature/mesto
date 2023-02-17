@@ -35,8 +35,8 @@ export default class Card{
   }
 
   handleDeleteCard(){
-    //this._element.remove();
-    //this._element = null;
+    this._element.remove();
+    this._element = null
   }
 
   _setEventListeners() {
@@ -50,7 +50,7 @@ export default class Card{
         this._likeCard(this._id) 
       }
     });
-    this._element.querySelector('.elements__item-delete').addEventListener('click', () => this._deleteCard());
+    this._element.querySelector('.elements__item-delete').addEventListener('click', () => this._deleteCard(this._id));
   }
 
   generateCard() {
