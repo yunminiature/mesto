@@ -5,7 +5,7 @@ import Section from '../components/Section.js';
 import Card from '../components/Card.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
-import PopupValidate from '../components/PopupValidate';
+import PopupDeleteCard from '../components/PopupDeleteCard';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../api/Api.js'
 import {buttonEditProfile, buttonEditAvatar, formEditProfile, profileNameEdit, profileDescriptionEdit, buttonAddCard, formAddCard, formEditAvatar} from '../components/constants.js'
@@ -43,12 +43,13 @@ const cardAddPopup = new PopupWithForm('.popup-card', (evt, formData) => {
     .catch(err => console.log(err))
     .finally(() => cardAddPopup.setButtonText('Сохранить'))
 }, '.popup__submit')
-const cardDeletePopup = new PopupValidate('.delete-popup', (evt, id) => {
+const cardDeletePopup = new PopupDeleteCard('.delete-popup', (evt, id, card) => {
   evt.preventDefault();
   api.deleteCard(id)
     .then(() => {
+      card.remove();
+      card = null;
       cardDeletePopup.close()
-      //handleDeleteCard()
     })
     .catch(err => console.log(err))
 }, '.popup__submit')
@@ -100,9 +101,8 @@ function createCard(data, template, handleCardClick){
         })
       .catch(err => console.log(err))
     },
-    deleteCard: (id) => {
-      cardDeletePopup.open(id);
-      //card.handleDeleteCard()
+    deleteCard: (id, card) => {
+      cardDeletePopup.open(id, card);
     }
   });
   return card.generateCard()

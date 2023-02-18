@@ -34,11 +34,6 @@ export default class Card{
     this._cardLike.classList.remove('elements__item-like-button_active')
   }
 
-  handleDeleteCard(){
-    this._element.remove();
-    this._element = null
-  }
-
   _setEventListeners() {
     this._cardImage.addEventListener('click', this._handleCardClick);
     this._cardLike = this._element.querySelector('.elements__item-like-button');
@@ -50,7 +45,7 @@ export default class Card{
         this._likeCard(this._id) 
       }
     });
-    this._element.querySelector('.elements__item-delete').addEventListener('click', () => this._deleteCard(this._id));
+    this._element.querySelector('.elements__item-delete').addEventListener('click', () => this._deleteCard(this._id, this._element));
   }
 
   generateCard() {
